@@ -109,7 +109,7 @@ export default function DashboardPreview3D() {
         </div>
 
         {/* Content */}
-        <div className="mt-6 grid grid-cols-[1fr_1.5fr] gap-5" style={{ transform: 'translateZ(20px)' }}>
+        <div className="mt-6 flex flex-col gap-5 sm:grid sm:grid-cols-[1fr_1.5fr]" style={{ transform: 'translateZ(20px)' }}>
           {/* Score Card */}
           <div className="flex flex-col items-center justify-center rounded-2xl border border-brandNavy/5 bg-night p-4 text-center">
             <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-textSecondary">CIBIL Score</div>
@@ -131,7 +131,7 @@ export default function DashboardPreview3D() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ delay: i * 0.1 }}
-                  className="flex items-center justify-between rounded-xl border border-brandNavy/5 bg-white p-3 shadow-sm"
+                  className="flex flex-col gap-1 rounded-xl border border-brandNavy/5 bg-white p-3 shadow-sm sm:flex-row sm:items-center sm:justify-between"
                 >
                   <div className="text-xs font-medium text-brandNavy">{item.t}</div>
                   <div className={['text-[11px] font-bold', item.c].join(' ')}>{item.s}</div>
@@ -142,8 +142,8 @@ export default function DashboardPreview3D() {
         </div>
 
         {/* Bottom Banner */}
-        <div className="mt-6 flex items-center gap-3 rounded-xl bg-brandNavy/5 p-4" style={{ transform: 'translateZ(10px)' }}>
-          <ShieldCheck className="h-5 w-5 text-brandNavy" />
+        <div className="mt-6 flex items-start gap-3 rounded-xl bg-brandNavy/5 p-4 sm:items-center" style={{ transform: 'translateZ(10px)' }}>
+          <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-brandNavy sm:mt-0" />
           <div className="text-sm font-medium text-brandNavy">
             <AnimatePresence mode="wait">
               <motion.span
@@ -163,10 +163,10 @@ export default function DashboardPreview3D() {
         <motion.div
           animate={{ y: [0, -10, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -right-6 -top-6 grid h-14 w-14 place-items-center rounded-2xl bg-brandRed text-white shadow-glowRed"
+          className="absolute -right-2 -top-4 grid h-10 w-10 place-items-center rounded-2xl bg-brandRed text-white shadow-glowRed sm:-right-6 sm:-top-6 sm:h-14 sm:w-14"
           style={{ transform: 'translateZ(60px)' }}
         >
-          <TrendingUp className="h-7 w-7" />
+          <TrendingUp className="h-5 w-5 sm:h-7 sm:w-7" />
         </motion.div>
       </motion.div>
     </div>

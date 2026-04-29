@@ -7,9 +7,10 @@ type IssueType = 'CIBIL Rectification' | 'Loan Settlement' | 'Credit Card Disput
 
 type FormState = { name: string; email: string; phone: string; issueType: IssueType; message: string }
 
-const DEFAULT_NUMBER = '919999999999'
-const SUPPORT_EMAIL = 'support@primescore.in'
-const DEFAULT_SUPPORT_PHONE = '+91 9XXXX XXXXX'
+const DEFAULT_NUMBER = '919680530334'
+const SUPPORT_EMAIL = 'info@primescore.in'
+const DEFAULT_SUPPORT_PHONE = '+91 63506-71636'
+const SECONDARY_SUPPORT_PHONE = '+91 63776-43115'
 const MAPS_LINK = 'https://maps.app.goo.gl/eBFMJKbaBsazrX496'
 
 const inputCls =
@@ -52,34 +53,40 @@ export default function Contact() {
           {/* Left: Contact Info */}
           <Reveal>
             <div className="flex flex-col gap-5">
-              <div className="grid gap-3">
-                <a href={telHref} className="flex items-center gap-4 rounded-xl border border-brandNavy/8 bg-white p-4 transition-colors hover:border-brandNavy/16">
-                  <div className="grid h-10 w-10 place-items-center rounded-lg bg-brandRed/10">
-                    <Phone className="h-4 w-4 text-brandRed" />
-                  </div>
-                  <div>
+                <a href={telHref} className="flex flex-col gap-2 rounded-xl border border-brandNavy/8 bg-white p-4 transition-colors hover:border-brandNavy/16">
+                  <div className="flex items-center gap-4">
+                    <div className="grid h-10 w-10 place-items-center rounded-lg bg-brandRed/10">
+                      <Phone className="h-4 w-4 text-brandRed" />
+                    </div>
                     <div className="text-sm font-semibold text-brandNavy">Phone</div>
-                    <div className="text-sm text-brandRed">{supportPhone}</div>
+                  </div>
+                  <div className="mt-2 text-sm text-brandRed">
+                    <div>{supportPhone}</div>
+                    <div>{SECONDARY_SUPPORT_PHONE}</div>
                   </div>
                 </a>
 
-                <a href={`mailto:${SUPPORT_EMAIL}`} className="flex items-center gap-4 rounded-xl border border-brandNavy/8 bg-white p-4 transition-colors hover:border-brandNavy/16">
-                  <div className="grid h-10 w-10 place-items-center rounded-lg bg-blue/10">
-                    <Mail className="h-4 w-4 text-blue" />
-                  </div>
-                  <div>
+                <a href={`mailto:${SUPPORT_EMAIL}`} className="flex flex-col gap-2 rounded-xl border border-brandNavy/8 bg-white p-4 transition-colors hover:border-brandNavy/16">
+                  <div className="flex items-center gap-4">
+                    <div className="grid h-10 w-10 place-items-center rounded-lg bg-brandNavy/10">
+                      <Mail className="h-4 w-4 text-brandNavy" />
+                    </div>
                     <div className="text-sm font-semibold text-brandNavy">Email</div>
-                    <div className="text-sm text-textSecondary">{SUPPORT_EMAIL}</div>
                   </div>
+                  <div className="mt-2 text-sm text-textSecondary">{SUPPORT_EMAIL}</div>
                 </a>
 
-                <div className="flex items-center gap-4 rounded-xl border border-brandNavy/8 bg-white p-4">
-                  <div className="grid h-10 w-10 place-items-center rounded-lg bg-success/10">
-                    <MapPin className="h-4 w-4 text-success" />
-                  </div>
-                  <div>
+                <div className="flex flex-col gap-2 rounded-xl border border-brandNavy/8 bg-white p-4">
+                  <div className="flex items-center gap-4">
+                    <div className="grid h-10 w-10 place-items-center rounded-lg bg-brandGreen/10">
+                      <MapPin className="h-4 w-4 text-brandGreen" />
+                    </div>
                     <div className="text-sm font-semibold text-brandNavy">Office</div>
-                    <div className="text-sm text-textSecondary">IStart Nest Incubation Center</div>
+                  </div>
+                  <div className="mt-2 text-sm text-textSecondary leading-relaxed">
+                    iStart Nest Incubation Center<br />
+                    Gov. Polytechnic College,<br />
+                    Jodhpur (Raj.) – 342001
                   </div>
                 </div>
 

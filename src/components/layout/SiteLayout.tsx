@@ -5,7 +5,7 @@ import WhatsAppFloat from './WhatsAppFloat'
 
 export default function SiteLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen bg-night font-body text-brandNavy">
+    <div className="min-h-screen bg-night font-body text-brandNavy overflow-x-hidden">
       {/* Subtle background texture — not the heavy multi-radial from before */}
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute inset-0 bg-heroRadial" />
