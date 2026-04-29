@@ -11,6 +11,7 @@ import {
   Mail
 } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { faqs, services, testimonials } from '../data/primescore'
 import Button from '../components/ui/Button'
 import AnimatedCounter from '../components/ui/AnimatedCounter'
@@ -229,10 +230,15 @@ export default function Home() {
           </div>
         </Reveal>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((t, idx) => (
-            <Reveal key={t.name} delay={idx * 0.06}>
-              <div className="flex h-full flex-col rounded-[2rem] border border-brandNavy/10 bg-white p-8 shadow-card">
+        <div className="mt-14 relative w-[100vw] left-1/2 -ml-[50vw] overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)] sm:[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] py-4">
+          <motion.div
+            animate={{ x: ['0%', '-50%'] }}
+            transition={{ ease: 'linear', duration: 35, repeat: Infinity }}
+            className="flex w-max gap-6 px-4"
+            whileHover={{ animationPlayState: 'paused' }}
+          >
+            {[...testimonials, ...testimonials].map((t, idx) => (
+              <div key={`${t.name}-${idx}`} className="flex w-[320px] sm:w-[380px] shrink-0 flex-col rounded-[2rem] border border-brandNavy/10 bg-white p-8 shadow-card hover:border-brandNavy/20 transition-colors">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-4">
                     <div className="grid h-12 w-12 place-items-center rounded-full bg-brandNavy text-white font-display text-lg font-bold">
@@ -259,8 +265,8 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </Reveal>
-          ))}
+            ))}
+          </motion.div>
         </div>
       </section>
 
