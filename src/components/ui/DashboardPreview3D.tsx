@@ -1,6 +1,6 @@
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { LayoutDashboard, ShieldCheck, TrendingUp } from 'lucide-react'
-import { useEffect, useState, MouseEvent } from 'react'
+import { useEffect, useState, type MouseEvent } from 'react'
 import AnimatedCounter from './AnimatedCounter'
 
 const states = [

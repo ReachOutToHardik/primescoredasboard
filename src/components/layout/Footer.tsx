@@ -2,15 +2,7 @@ import { NavLink } from 'react-router-dom'
 
 const footerLink = 'text-sm text-textSecondary hover:text-brandNavy transition-colors duration-200'
 
-const DEFAULT_NUMBER = '919999999999'
-const SUPPORT_EMAIL = 'support@primescore.in'
-
 export default function Footer() {
-  const whatsappNumber = (import.meta.env.VITE_WHATSAPP_NUMBER || DEFAULT_NUMBER).toString().replace(/\D/g, '')
-  const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    'Hi Primescore — I need help with my credit score.',
-  )}`
-
   return (
     <footer className="mt-24 border-t border-brandNavy/8">
       <div className="mx-auto max-w-[1440px] px-4 py-14 sm:px-6 lg:px-12">

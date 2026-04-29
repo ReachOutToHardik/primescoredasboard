@@ -6,11 +6,8 @@ import {
   Lock,
   Radar,
   ShieldCheck,
-  Sparkles,
   Star,
   TrendingUp,
-  Activity,
-  Award,
   Mail
 } from 'lucide-react'
 import { NavLink } from 'react-router-dom'

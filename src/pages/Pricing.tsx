@@ -1,4 +1,4 @@
-import { Check, ShieldCheck, Sparkles } from 'lucide-react'
+import { Check } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import Reveal from '../components/ui/Reveal'
 import Button from '../components/ui/Button'
