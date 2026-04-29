@@ -53,6 +53,7 @@ export default function Contact() {
           {/* Left: Contact Info */}
           <Reveal>
             <div className="flex flex-col gap-5">
+              <div className="grid gap-3">
                 <a href={telHref} className="flex flex-col gap-2 rounded-xl border border-brandNavy/8 bg-white p-4 transition-colors hover:border-brandNavy/16">
                   <div className="flex items-center gap-4">
                     <div className="grid h-10 w-10 place-items-center rounded-lg bg-brandRed/10">
