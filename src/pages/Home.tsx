@@ -154,7 +154,7 @@ export default function Home() {
                 </div>
                 <div className="mt-12">
                   <NavLink to="/dashboard">
-                    <Button className="bg-white text-brandNavy hover:bg-white/90">View Sample Dashboard</Button>
+                    <Button variant="white">View Sample Dashboard</Button>
                   </NavLink>
                 </div>
               </div>
