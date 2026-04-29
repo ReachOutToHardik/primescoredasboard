@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #f7f8fc;
+  color: #0f1729;
+  line-height: 1.6;
+}
+
+::selection {
+  background: rgba(228, 30, 38, 0.18);
+  color: #222A59;
+}
+
+/* --- Dot pattern for subtle texture --- */
+.bg-dots {
+  background-image: radial-gradient(circle at 1px 1px, rgba(34, 42, 89, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* --- Glass effect --- */
+.glass {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(34, 42, 89, 0.08);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+}
+
+/* --- Card shadow --- */
+.card-glow {
+  box-shadow: 0 1px 3px rgba(34, 42, 89, 0.06), 0 6px 24px rgba(34, 42, 89, 0.08);
+}
+
+/* --- Text gradient for hero accents --- */
+.text-gradient {
+  background: linear-gradient(135deg, #E41E26 0%, #E55523 50%, #FFB81C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- Section with alternate background --- */
+.section-alt {
+  background: rgba(34, 42, 89, 0.025);
+  border-top: 1px solid rgba(34, 42, 89, 0.06);
+  border-bottom: 1px solid rgba(34, 42, 89, 0.06);
+}
+
+/* --- Custom scrollbar --- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(34, 42, 89, 0.15);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 42, 89, 0.25);
+}
+
+/* --- Focus states --- */
+*:focus-visible {
+  outline: 2px solid rgba(228, 30, 38, 0.5);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* --- Input transitions --- */
+input, select, textarea {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+input:focus, select:focus, textarea:focus {
+  box-shadow: 0 0 0 3px rgba(228, 30, 38, 0.1);
+}
+
+/* --- Accessibility --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

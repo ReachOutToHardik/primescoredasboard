@@ -1,0 +1,87 @@
+import { NavLink } from 'react-router-dom'
+
+const footerLink = 'text-sm text-textSecondary hover:text-brandNavy transition-colors duration-200'
+
+const DEFAULT_NUMBER = '919999999999'
+const SUPPORT_EMAIL = 'support@primescore.in'
+
+export default function Footer() {
+  const whatsappNumber = (import.meta.env.VITE_WHATSAPP_NUMBER || DEFAULT_NUMBER).toString().replace(/\D/g, '')
+  const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    'Hi Primescore — I need help with my credit score.',
+  )}`
+
+  return (
+    <footer className="mt-24 border-t border-brandNavy/8">
+      <div className="mx-auto max-w-[1440px] px-4 py-14 sm:px-6 lg:px-12">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
+          {/* Brand */}
+          <div className="lg:col-span-1">
+            <div className="flex items-center">
+              <img src="/logo.png" alt="Primescore" className="h-10 w-auto" />
+            </div>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-textSecondary">
+              Credit rectification and score support — dispute errors, recover your score, and unlock
+              better credit outcomes.
+            </p>
+          </div>
+
+          {/* Platform */}
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-wider text-brandNavy">Platform</div>
+            <div className="mt-4 grid gap-2.5">
+              <NavLink className={footerLink} to="/services">Services</NavLink>
+              <NavLink className={footerLink} to="/how-it-works">How It Works</NavLink>
+              <NavLink className={footerLink} to="/pricing">Pricing</NavLink>
+              <NavLink className={footerLink} to="/dashboard">Dashboard</NavLink>
+            </div>
+          </div>
+
+          {/* Company */}
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-wider text-brandNavy">Company</div>
+            <div className="mt-4 grid gap-2.5">
+              <NavLink className={footerLink} to="/about">About</NavLink>
+              <NavLink className={footerLink} to="/contact">Contact</NavLink>
+              <a className={footerLink} href="#">Privacy Policy</a>
+              <a className={footerLink} href="#">Terms of Service</a>
+            </div>
+          </div>
+
+          {/* Contact */}
+          <div className="lg:col-span-2">
+            <div className="text-xs font-semibold uppercase tracking-wider text-brandNavy">Get in touch</div>
+            <div className="mt-4 grid gap-6 sm:grid-cols-2">
+              <div className="flex flex-col gap-2.5">
+                <a className={footerLink} href="mailto:info@primescore.in">info@primescore.in</a>
+                <a className={footerLink} href="tel:+916350671636">+91 63506-71636</a>
+                <a className={footerLink} href="tel:+916377643115">+91 63776-43115</a>
+                
+                <div className="mt-3 text-[13px] text-textSecondary leading-relaxed">
+                  iStart Nest Incubation Center<br />
+                  Gov. Polytechnic College,<br />
+                  Jodhpur (Raj.) – 342001
+                </div>
+              </div>
+              
+              <div className="h-32 w-full overflow-hidden rounded-xl border border-brandNavy/10 bg-brandNavy/5">
+                <iframe 
+                  src="https://maps.google.com/maps?q=iStart%20Nest%20Incubation%20Center,%20Gov.%20Polytechnic%20College,%20Jodhpur&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                  className="h-full w-full border-0" 
+                  allowFullScreen 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12 flex flex-col gap-3 border-t border-brandNavy/8 pt-6 text-xs text-textSecondary sm:flex-row sm:items-center sm:justify-between">
+          <div>© {new Date().getFullYear()} Primescore. All rights reserved.</div>
+          <div>Primescore is not a credit bureau or NBFC. We assist with dispute filing and documentation.</div>
+        </div>
+      </div>
+    </footer>
+  )
+}
