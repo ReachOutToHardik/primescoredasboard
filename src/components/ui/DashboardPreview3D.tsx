@@ -79,7 +79,7 @@ export default function DashboardPreview3D() {
 
   return (
     <div 
-      className="relative mx-auto w-full max-w-[480px] perspective-[2000px] p-8"
+      className="relative mx-auto flex justify-center w-full max-w-[480px] perspective-[2000px] p-2 sm:p-8"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
@@ -89,10 +89,10 @@ export default function DashboardPreview3D() {
           rotateY,
           transformStyle: 'preserve-3d'
         }}
-        className="relative rounded-[2rem] border border-brandNavy/10 bg-white p-6 shadow-elevated transition-shadow hover:shadow-2xl hover:shadow-brandNavy/10"
+        className="relative w-[320px] max-w-[95vw] sm:w-full sm:max-w-none rounded-[1.5rem] sm:rounded-[2rem] border border-brandNavy/10 bg-white p-4 sm:p-6 shadow-elevated transition-shadow hover:shadow-2xl hover:shadow-brandNavy/10"
       >
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-brandNavy/10 pb-5">
+        <div className="flex items-center justify-between border-b border-brandNavy/10 pb-3 sm:pb-5">
           <div className="flex items-center gap-3">
             <div className="grid h-10 w-10 place-items-center rounded-xl bg-brandNavy text-white">
               <LayoutDashboard className="h-5 w-5" />
@@ -109,20 +109,20 @@ export default function DashboardPreview3D() {
         </div>
 
         {/* Content */}
-        <div className="mt-6 flex flex-col gap-5 sm:grid sm:grid-cols-[1fr_1.5fr]" style={{ transform: 'translateZ(20px)' }}>
+        <div className="mt-4 sm:mt-6 grid grid-cols-[1fr_1.5fr] gap-2 sm:gap-5" style={{ transform: 'translateZ(20px)' }}>
           {/* Score Card */}
-          <div className="flex flex-col items-center justify-center rounded-2xl border border-brandNavy/5 bg-night p-4 text-center">
-            <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-textSecondary">CIBIL Score</div>
-            <div className="font-display text-5xl font-black text-brandNavy">
+          <div className="flex flex-col items-center justify-center rounded-2xl border border-brandNavy/5 bg-night p-2 sm:p-4 text-center">
+            <div className="mb-1 sm:mb-2 text-[9px] sm:text-xs font-semibold uppercase tracking-wider text-textSecondary">CIBIL Score</div>
+            <div className="font-display text-3xl sm:text-5xl font-black text-brandNavy">
               <AnimatedCounter value={current.score} />
             </div>
-            <div className={['mt-3 rounded-full border border-brandNavy/5 bg-white px-3 py-1 text-[11px] font-bold uppercase tracking-wide', current.statusColor].join(' ')}>
+            <div className={['mt-2 sm:mt-3 rounded-full border border-brandNavy/5 bg-white px-2 sm:px-3 py-0.5 sm:py-1 text-[8px] sm:text-[11px] font-bold uppercase tracking-wide', current.statusColor].join(' ')}>
               {current.status}
             </div>
           </div>
 
           {/* Active Items */}
-          <div className="flex flex-col justify-center gap-2.5">
+          <div className="flex flex-col justify-center gap-1.5 sm:gap-2">
             <AnimatePresence mode="popLayout">
               {current.items.map((item, i) => (
                 <motion.div
@@ -131,10 +131,10 @@ export default function DashboardPreview3D() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ delay: i * 0.1 }}
-                  className="flex flex-col gap-1 rounded-xl border border-brandNavy/5 bg-white p-3 shadow-sm sm:flex-row sm:items-center sm:justify-between"
+                  className="flex items-center justify-between gap-1 rounded-xl border border-brandNavy/5 bg-white p-2 sm:p-3 shadow-sm"
                 >
-                  <div className="text-xs font-medium text-brandNavy">{item.t}</div>
-                  <div className={['text-[11px] font-bold', item.c].join(' ')}>{item.s}</div>
+                  <div className="text-[9px] sm:text-xs font-medium text-brandNavy truncate">{item.t}</div>
+                  <div className={['text-[8px] sm:text-[11px] font-bold whitespace-nowrap', item.c].join(' ')}>{item.s}</div>
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -142,9 +142,9 @@ export default function DashboardPreview3D() {
         </div>
 
         {/* Bottom Banner */}
-        <div className="mt-6 flex items-start gap-3 rounded-xl bg-brandNavy/5 p-4 sm:items-center" style={{ transform: 'translateZ(10px)' }}>
-          <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-brandNavy sm:mt-0" />
-          <div className="text-sm font-medium text-brandNavy">
+        <div className="mt-4 sm:mt-6 flex items-center gap-2 sm:gap-3 rounded-xl bg-brandNavy/5 p-3 sm:p-4" style={{ transform: 'translateZ(10px)' }}>
+          <ShieldCheck className="h-4 w-4 sm:h-5 sm:w-5 text-brandNavy shrink-0" />
+          <div className="text-xs sm:text-sm font-medium text-brandNavy">
             <AnimatePresence mode="wait">
               <motion.span
                 key={idx}

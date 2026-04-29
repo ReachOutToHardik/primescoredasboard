@@ -18,25 +18,27 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Platform */}
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-brandNavy">Platform</div>
-            <div className="mt-4 grid gap-2.5">
-              <NavLink className={footerLink} to="/services">Services</NavLink>
-              <NavLink className={footerLink} to="/how-it-works">How It Works</NavLink>
-              <NavLink className={footerLink} to="/pricing">Pricing</NavLink>
-              <NavLink className={footerLink} to="/dashboard">Dashboard</NavLink>
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 lg:col-span-2">
+            {/* Platform */}
+            <div>
+              <div className="text-xs font-semibold uppercase tracking-wider text-brandNavy">Platform</div>
+              <div className="mt-4 grid gap-2.5">
+                <NavLink className={footerLink} to="/services">Services</NavLink>
+                <NavLink className={footerLink} to="/how-it-works">How It Works</NavLink>
+                <NavLink className={footerLink} to="/pricing">Pricing</NavLink>
+                <NavLink className={footerLink} to="/dashboard">Dashboard</NavLink>
+              </div>
             </div>
-          </div>
 
-          {/* Company */}
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-brandNavy">Company</div>
-            <div className="mt-4 grid gap-2.5">
-              <NavLink className={footerLink} to="/about">About</NavLink>
-              <NavLink className={footerLink} to="/contact">Contact</NavLink>
-              <a className={footerLink} href="#">Privacy Policy</a>
-              <a className={footerLink} href="#">Terms of Service</a>
+            {/* Company */}
+            <div>
+              <div className="text-xs font-semibold uppercase tracking-wider text-brandNavy">Company</div>
+              <div className="mt-4 grid gap-2.5">
+                <NavLink className={footerLink} to="/about">About</NavLink>
+                <NavLink className={footerLink} to="/contact">Contact</NavLink>
+                <a className={footerLink} href="#">Privacy Policy</a>
+                <a className={footerLink} href="#">Terms of Service</a>
+              </div>
             </div>
           </div>
 

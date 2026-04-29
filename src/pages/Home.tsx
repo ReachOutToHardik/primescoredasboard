@@ -159,7 +159,7 @@ export default function Home() {
                   </NavLink>
                 </div>
               </div>
-              <div className="order-1 lg:order-2 flex justify-center">
+              <div className="hidden lg:flex order-2 justify-center lg:-mr-12">
                  <DashboardPreview3D />
               </div>
             </div>
