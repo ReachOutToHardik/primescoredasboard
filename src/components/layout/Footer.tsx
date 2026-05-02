@@ -18,7 +18,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 lg:col-span-2">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-2">
             {/* Platform */}
             <div>
               <div className="text-xs font-semibold uppercase tracking-wider text-brandNavy">Platform</div>
@@ -38,6 +38,16 @@ export default function Footer() {
                 <NavLink className={footerLink} to="/contact">Contact</NavLink>
                 <a className={footerLink} href="#">Privacy Policy</a>
                 <a className={footerLink} href="#">Terms of Service</a>
+              </div>
+            </div>
+
+            {/* Tools */}
+            <div>
+              <div className="text-xs font-semibold uppercase tracking-wider text-brandNavy">Tools</div>
+              <div className="mt-4 grid gap-2.5">
+                <NavLink className={footerLink} to="/tools/emi">EMI Calculator</NavLink>
+                <NavLink className={footerLink} to="/tools/gst">GST Calculator</NavLink>
+                <NavLink className={footerLink} to="/tools/ifsc">IFSC Code Finder</NavLink>
               </div>
             </div>
           </div>

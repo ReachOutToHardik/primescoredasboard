@@ -9,6 +9,9 @@ import Home from './pages/Home'
 import HowItWorks from './pages/HowItWorks'
 import Pricing from './pages/Pricing'
 import Services from './pages/Services'
+import IfscCode from './pages/tools/IfscCode'
+import GstCalculator from './pages/tools/GstCalculator'
+import EmiCalculator from './pages/tools/EmiCalculator'
 
 const pageVariants = {
   initial: { opacity: 0, y: 10 },
@@ -39,6 +42,9 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/tools/ifsc" element={<IfscCode />} />
+            <Route path="/tools/gst" element={<GstCalculator />} />
+            <Route path="/tools/emi" element={<EmiCalculator />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </motion.div>
