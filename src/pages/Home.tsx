@@ -134,9 +134,9 @@ export default function Home() {
           <div className="rounded-[3rem] bg-brandNavy px-6 py-16 sm:px-16 sm:py-20 lg:px-24">
             <div className="grid items-center gap-12 lg:grid-cols-2">
               <div className="order-2 lg:order-1">
-                <img src="/logo.png" alt="Primescore" className="h-8 w-auto brightness-0 invert mb-8" />
+                <img src="/Logo-primescore.png" alt="Primescore" className="h-8 w-auto brightness-0 invert mb-8" />
                 <h2 className="font-display text-4xl font-black tracking-tight text-white sm:text-5xl">
-                  Total transparency.<br/>No black boxes.
+                  Total transparency.<br />No black boxes.
                 </h2>
                 <p className="mt-6 max-w-lg text-lg leading-relaxed text-white/70">
                   Unlike traditional agencies, we give you a live dashboard to track every dispute, reference ID, and score change. You are always in control of your financial data.
@@ -160,7 +160,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="hidden lg:flex order-2 justify-center lg:-mr-12">
-                 <DashboardPreview3D />
+                <DashboardPreview3D />
               </div>
             </div>
           </div>
@@ -331,7 +331,7 @@ export default function Home() {
                     className="w-full resize-none rounded-2xl border border-brandNavy/10 bg-brandNavy/[0.02] p-5 text-base text-brandNavy placeholder:text-textSecondary outline-none transition-colors focus:border-brandNavy focus:bg-white"
                     required
                   />
-                  
+
                   <div className="mt-2 text-sm text-textSecondary">
                     Or email us directly at <a href="mailto:info@primescore.in" className="font-bold text-brandRed hover:underline">info@primescore.in</a>
                   </div>

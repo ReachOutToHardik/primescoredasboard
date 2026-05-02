@@ -65,7 +65,7 @@ export default function Navbar() {
       >
         <div className="mx-auto flex max-w-[1440px] items-center justify-between px-4 py-3 sm:px-6 lg:px-12">
           <NavLink to="/" className="group flex items-center">
-            <img src="/logo.png" alt="Primescore" className="h-[42px] w-auto" />
+            <img src="/Logo-primescore.png" alt="Primescore" className="h-[42px] w-auto" />
           </NavLink>
 
           <nav className="hidden items-center gap-8 md:flex">

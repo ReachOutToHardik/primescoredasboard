@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center">
-              <img src="/logo.png" alt="Primescore" className="h-10 w-auto" />
+              <img src="/Logo-primescore.png" alt="Primescore" className="h-10 w-auto" />
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-textSecondary">
               Credit rectification and score support — dispute errors, recover your score, and unlock
@@ -50,20 +50,20 @@ export default function Footer() {
                 <a className={footerLink} href="mailto:info@primescore.in">info@primescore.in</a>
                 <a className={footerLink} href="tel:+916350671636">+91 63506-71636</a>
                 <a className={footerLink} href="tel:+916377643115">+91 63776-43115</a>
-                
+
                 <div className="mt-3 text-[13px] text-textSecondary leading-relaxed">
                   iStart Nest Incubation Center<br />
                   Gov. Polytechnic College,<br />
                   Jodhpur (Raj.) – 342001
                 </div>
               </div>
-              
+
               <div className="h-32 w-full overflow-hidden rounded-xl border border-brandNavy/10 bg-brandNavy/5">
-                <iframe 
-                  src="https://maps.google.com/maps?q=iStart%20Nest%20Incubation%20Center,%20Gov.%20Polytechnic%20College,%20Jodhpur&t=&z=14&ie=UTF8&iwloc=&output=embed" 
-                  className="h-full w-full border-0" 
-                  allowFullScreen 
-                  loading="lazy" 
+                <iframe
+                  src="https://maps.google.com/maps?q=iStart%20Nest%20Incubation%20Center,%20Gov.%20Polytechnic%20College,%20Jodhpur&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                  className="h-full w-full border-0"
+                  allowFullScreen
+                  loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
               </div>
