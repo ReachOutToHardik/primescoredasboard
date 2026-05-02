@@ -10,7 +10,7 @@ import {
   Mail
 } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { faqs, services, testimonials } from '../data/primescore'
 import Button from '../components/ui/Button'
 import AnimatedCounter from '../components/ui/AnimatedCounter'
@@ -18,7 +18,7 @@ import FAQAccordion from '../components/ui/FAQAccordion'
 import Reveal from '../components/ui/Reveal'
 import HeroInteractive from '../components/ui/HeroInteractive'
 import DashboardPreview3D from '../components/ui/DashboardPreview3D'
-import { useMemo, useState, useEffect } from 'react'
+import { useMemo, useState, useEffect, useRef } from 'react'
 
 
 
@@ -82,6 +82,40 @@ const serviceIcons: Record<string, typeof ShieldCheck> = {
   emi: Brain,
 }
 
+function ScrollLinkedDashboard() {
+  const ref = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  })
+
+  const scale = useTransform(scrollYProgress, [0, 0.4], [0.8, 1])
+  const rotateX = useTransform(scrollYProgress, [0, 0.4], [25, 0])
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1])
+
+  return (
+    <motion.div 
+      ref={ref}
+      style={{ scale, rotateX, opacity }}
+      className="w-full flex justify-center"
+    >
+      <DashboardPreview3D />
+    </motion.div>
+  )
+}
+
+function ParallaxShape({ delay = 0, className = "" }: { delay?: number, className?: string }) {
+  const { scrollY } = useScroll()
+  const y = useTransform(scrollY, [0, 1000], [0, -150 + delay * 50])
+  
+  return (
+    <motion.div 
+      style={{ y }} 
+      className={`absolute rounded-full pointer-events-none blur-3xl opacity-20 ${className}`} 
+    />
+  )
+}
+
 export default function Home() {
   const [ctaEmail, setCtaEmail] = useState('')
   const [ctaStatus, setCtaStatus] = useState<'idle' | 'sent'>('idle')
@@ -120,7 +154,10 @@ export default function Home() {
       </section>
 
       {/* ═══ HOW IT WORKS ═══ */}
-      <section className="mt-32" id="how">
+      <section className="mt-32 relative" id="how">
+        <ParallaxShape delay={1} className="top-0 -left-20 h-64 w-64 bg-brandRed/10" />
+        <ParallaxShape delay={2} className="bottom-0 -right-20 h-96 w-96 bg-brandNavy/5" />
+        
         <Reveal>
           <div className="text-center max-w-2xl mx-auto">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-brandRed">How it works</p>
@@ -170,11 +207,19 @@ export default function Home() {
         </div>
       </section>
 
+
+
       {/* ═══ DASHBOARD HIGHLIGHT ═══ */}
-      <section className="mt-32">
+      <section className="mt-32" id="dashboard-section">
         <Reveal>
-          <div className="rounded-[3rem] bg-brandNavy px-6 py-16 sm:px-16 sm:py-20 lg:px-24">
-            <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="rounded-[3rem] bg-brandNavy px-6 py-16 sm:px-16 sm:py-20 lg:px-24 relative overflow-hidden">
+            {/* Parallax Background Circles */}
+            <motion.div 
+              style={{ y: useTransform(useScroll().scrollYProgress, [0, 1], [0, -100]) }}
+              className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-brandRed/10 blur-3xl pointer-events-none" 
+            />
+            
+            <div className="grid items-center gap-12 lg:grid-cols-2 relative z-10">
               <div className="order-2 lg:order-1">
                 <img src="/Logo-primescore.png" alt="Primescore" className="h-8 w-auto brightness-0 invert mb-8" />
                 <h2 className="font-display text-4xl font-black tracking-tight text-white sm:text-5xl">
@@ -201,8 +246,9 @@ export default function Home() {
                   </NavLink>
                 </div>
               </div>
-              <div className="hidden lg:flex order-2 justify-center lg:-mr-12">
-                <DashboardPreview3D />
+              
+              <div className="hidden lg:flex order-2 justify-center lg:-mr-12 perspective-1000">
+                <ScrollLinkedDashboard />
               </div>
             </div>
           </div>
