@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import {
   Bell,
   FileText,
@@ -27,12 +28,37 @@ function ImagePlaceholder({ title }: { title: string }) {
 
   return (
     <Reveal>
-      <div className="w-full overflow-hidden rounded-2xl border border-brandNavy/8 bg-white shadow-card">
-        <img
-          src={imgSrc}
-          alt={`${title} view`}
-          className="h-auto w-full object-cover"
-        />
+      <div className="group relative w-full overflow-hidden rounded-2xl border border-brandNavy/8 bg-white shadow-card lg:h-auto">
+        {/* Desktop view: full height, standard hover effect */}
+        <motion.div 
+          className="hidden w-full lg:block"
+          whileHover={{ scale: 1.02 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+        >
+          <img
+            src={imgSrc}
+            alt={`${title} view`}
+            className="h-auto w-full object-cover"
+          />
+        </motion.div>
+
+        {/* Mobile view: fixed height, auto-pan/zoom effect */}
+        <div className="h-[350px] w-full lg:hidden">
+          <motion.img
+            src={imgSrc}
+            alt={`${title} view`}
+            className="h-full w-full object-cover"
+            animate={{
+              objectPosition: ["0% 0%", "100% 0%", "0% 0%"],
+              scale: [1, 1.05, 1]
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        </div>
       </div>
     </Reveal>
   )
@@ -105,22 +131,24 @@ export default function Dashboard() {
           </Reveal>
 
           {/* Main content */}
-          <div className="grid gap-6">
+          <div className="grid min-w-0 gap-6">
             {/* Mobile Tabs */}
             <Reveal>
-              <div className="flex overflow-x-auto rounded-xl border border-brandNavy/8 bg-white p-2 shadow-sm lg:hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+              <div className="flex w-full items-center justify-between rounded-2xl border border-brandNavy/8 bg-white p-1.5 shadow-sm lg:hidden">
                 {tabs.map((x) => (
                   <button
                     key={x.id}
                     onClick={() => setActiveTab(x.id)}
-                    className={`flex shrink-0 items-center gap-2 rounded-lg px-4 py-2 text-sm transition-colors ${
+                    className={`flex flex-1 flex-col items-center justify-center gap-1.5 rounded-xl py-2.5 transition-all ${
                       activeTab === x.id
-                        ? 'bg-brandNavy/[0.04] font-semibold text-brandNavy'
+                        ? 'bg-brandNavy/[0.06] text-brandNavy shadow-sm scale-[0.98]'
                         : 'text-textSecondary hover:bg-brandNavy/[0.04] hover:text-brandNavy'
                     }`}
                   >
-                    <x.icon className="h-4 w-4" />
-                    <span>{x.label}</span>
+                    <x.icon className={`h-5 w-5 transition-all ${activeTab === x.id ? 'stroke-[2.5px]' : ''}`} />
+                    <span className={`text-[10px] tracking-wide sm:text-xs ${activeTab === x.id ? 'font-bold' : 'font-medium'}`}>
+                      {x.label}
+                    </span>
                   </button>
                 ))}
               </div>
