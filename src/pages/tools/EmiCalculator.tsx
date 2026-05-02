@@ -11,7 +11,6 @@ export default function EmiCalculator() {
   const totalPayment = emi * n
   const totalInterest = totalPayment - amount
 
-  const principalPercentage = (amount / totalPayment) * 100 || 0
   const interestPercentage = (totalInterest / totalPayment) * 100 || 0
 
   const circumference = 2 * Math.PI * 60
