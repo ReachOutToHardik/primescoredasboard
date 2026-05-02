@@ -19,7 +19,7 @@ import FAQAccordion from '../components/ui/FAQAccordion'
 import Reveal from '../components/ui/Reveal'
 import HeroInteractive from '../components/ui/HeroInteractive'
 import DashboardPreview3D from '../components/ui/DashboardPreview3D'
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 
 function Stars({ count }: { count: number }) {
   return (
@@ -55,6 +55,13 @@ function TestimonialCarousel({ items }: { items: any[] }) {
 
   const next = () => setIdx((i) => (i + 1) % items.length)
   const prev = () => setIdx((i) => (i - 1 + items.length) % items.length)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIdx((i) => (i + 1) % items.length)
+    }, 2500)
+    return () => clearInterval(timer)
+  }, [items.length])
 
   return (
     <div className="flex flex-col items-center">
@@ -276,7 +283,7 @@ export default function Home() {
             {/* Column 1 - Up */}
             <motion.div
               animate={{ y: ['0%', '-50%'] }}
-              transition={{ ease: 'linear', duration: 40, repeat: Infinity }}
+              transition={{ ease: 'linear', duration: 180, repeat: Infinity }}
               className="flex w-full flex-col gap-6"
             >
               {[...testimonials, ...testimonials, ...testimonials, ...testimonials].map((t, idx) => (
@@ -287,7 +294,7 @@ export default function Home() {
             {/* Column 2 - Down */}
             <motion.div
               animate={{ y: ['-50%', '0%'] }}
-              transition={{ ease: 'linear', duration: 45, repeat: Infinity }}
+              transition={{ ease: 'linear', duration: 200, repeat: Infinity }}
               className="flex w-full flex-col gap-6"
             >
               {[...testimonials, ...testimonials, ...testimonials, ...testimonials].map((t, idx) => (
@@ -298,7 +305,7 @@ export default function Home() {
             {/* Column 3 - Up */}
             <motion.div
               animate={{ y: ['0%', '-50%'] }}
-              transition={{ ease: 'linear', duration: 35, repeat: Infinity }}
+              transition={{ ease: 'linear', duration: 160, repeat: Infinity }}
               className="flex w-full flex-col gap-6"
             >
               {[...testimonials, ...testimonials, ...testimonials, ...testimonials].map((t, idx) => (
