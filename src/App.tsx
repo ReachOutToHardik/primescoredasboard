@@ -13,6 +13,8 @@ import IfscCode from './pages/tools/IfscCode'
 import GstCalculator from './pages/tools/GstCalculator'
 import EmiCalculator from './pages/tools/EmiCalculator'
 
+import LoadingScreen from './components/ui/LoadingScreen'
+
 const pageVariants = {
   initial: { opacity: 0, y: 10 },
   animate: { opacity: 1, y: 0 },
@@ -24,6 +26,7 @@ export default function App() {
 
   return (
     <SiteLayout>
+      <LoadingScreen />
       <ScrollToTop />
       <AnimatePresence mode="wait">
         <motion.div
