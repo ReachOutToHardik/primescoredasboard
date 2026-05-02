@@ -6,7 +6,6 @@ import {
   Lock,
   Radar,
   ShieldCheck,
-  Star,
   TrendingUp,
   Mail
 } from 'lucide-react'
@@ -21,15 +20,7 @@ import HeroInteractive from '../components/ui/HeroInteractive'
 import DashboardPreview3D from '../components/ui/DashboardPreview3D'
 import { useMemo, useState, useEffect } from 'react'
 
-function Stars({ count }: { count: number }) {
-  return (
-    <div className="flex items-center gap-0.5">
-      {Array.from({ length: count }).map((_, i) => (
-        <Star key={i} className="h-4 w-4 fill-brandYellow text-brandYellow" />
-      ))}
-    </div>
-  )
-}
+
 
 function TestimonialCard({ t }: { t: any }) {
   return (
