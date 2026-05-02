@@ -31,6 +31,50 @@ function Stars({ count }: { count: number }) {
   )
 }
 
+function TestimonialCard({ t }: { t: any }) {
+  return (
+    <div className="rounded-[2rem] border border-brandNavy/10 bg-white p-8 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brandNavy/20 hover:shadow-elevated">
+      <div className="flex items-center gap-4">
+        <div className="grid h-12 w-12 place-items-center rounded-full bg-brandNavy text-white font-display text-lg font-bold">
+          {t.name.split(' ').map((w: string) => w[0]).join('')}
+        </div>
+        <div>
+          <div className="text-base font-bold text-brandNavy">{t.name}</div>
+          <div className="text-sm font-medium text-textSecondary">{t.role}</div>
+        </div>
+      </div>
+      <p className="mt-6 text-base italic leading-relaxed text-textSecondary">
+        "{t.quote}"
+      </p>
+    </div>
+  )
+}
+
+function TestimonialCarousel({ items }: { items: any[] }) {
+  const [idx, setIdx] = useState(0)
+
+  const next = () => setIdx((i) => (i + 1) % items.length)
+  const prev = () => setIdx((i) => (i - 1 + items.length) % items.length)
+
+  return (
+    <div className="flex flex-col items-center">
+      <div className="w-full">
+        <Reveal key={idx}>
+          <TestimonialCard t={items[idx]} />
+        </Reveal>
+      </div>
+      <div className="mt-8 flex gap-4">
+        <button onClick={prev} className="grid h-12 w-12 place-items-center rounded-full bg-brandNavy/5 text-brandNavy transition-colors hover:bg-brandNavy/10">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button onClick={next} className="grid h-12 w-12 place-items-center rounded-full bg-brandNavy/5 text-brandNavy transition-colors hover:bg-brandNavy/10">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  )
+}
+
 const serviceIcons: Record<string, typeof ShieldCheck> = {
   rectification: ShieldCheck,
   settlement: Lock,
@@ -215,58 +259,58 @@ export default function Home() {
 
       {/* ═══ TESTIMONIALS ═══ */}
       <section className="mt-32">
-        <Reveal>
-          <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-brandRed">Testimonials</p>
-              <h2 className="mt-3 font-display text-4xl font-black tracking-tight text-brandNavy sm:text-5xl">
-                Real recoveries.
-              </h2>
-            </div>
-            <div className="flex items-center gap-2 rounded-full border border-brandNavy/10 bg-white px-4 py-2 shadow-sm">
-              <Stars count={5} />
-              <span className="ml-2 text-sm font-bold text-brandNavy">4.9/5 Average</span>
-            </div>
-          </div>
-        </Reveal>
-
-        <div className="mt-14 relative w-[100vw] left-1/2 -ml-[50vw] overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)] sm:[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] py-4">
-          <motion.div
-            animate={{ x: ['0%', '-50%'] }}
-            transition={{ ease: 'linear', duration: 35, repeat: Infinity }}
-            className="flex w-max gap-6 px-4"
-            whileHover={{ animationPlayState: 'paused' }}
-          >
-            {[...testimonials, ...testimonials].map((t, idx) => (
-              <div key={`${t.name}-${idx}`} className="flex w-[320px] sm:w-[380px] shrink-0 flex-col rounded-[2rem] border border-brandNavy/10 bg-white p-8 shadow-card hover:border-brandNavy/20 transition-colors">
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex items-center gap-4">
-                    <div className="grid h-12 w-12 place-items-center rounded-full bg-brandNavy text-white font-display text-lg font-bold">
-                      {t.name.split(' ').map((w) => w[0]).join('')}
-                    </div>
-                    <div>
-                      <div className="text-base font-bold text-brandNavy">{t.name}</div>
-                      <div className="text-xs font-medium text-textSecondary">{t.role}, {t.city}</div>
-                    </div>
-                  </div>
-                </div>
-
-                <p className="mt-6 flex-1 text-base italic leading-relaxed text-textSecondary">"{t.quote}"</p>
-
-                <div className="mt-8 flex items-center gap-2 rounded-2xl bg-night px-4 py-4 border border-brandNavy/5">
-                  <div className="flex-1 text-center">
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-textSecondary">Before</div>
-                    <div className="mt-1 font-mono text-xl font-black text-brandNavy">{t.before}</div>
-                  </div>
-                  <ArrowRight className="h-5 w-5 text-textSecondary/50" />
-                  <div className="flex-1 text-center">
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-brandGreen">After</div>
-                    <div className="mt-1 font-mono text-xl font-black text-brandGreen">{t.after}</div>
-                  </div>
-                </div>
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-12">
+          <Reveal>
+            <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-brandRed">Testimonials</p>
+                <h2 className="mt-3 font-display text-4xl font-black tracking-tight text-brandNavy sm:text-5xl md:text-6xl max-w-2xl">
+                  Trusted by Thousands <span className="text-textSecondary/50">Across India</span>
+                </h2>
               </div>
-            ))}
-          </motion.div>
+            </div>
+          </Reveal>
+
+          {/* Desktop Marquee (hidden on mobile) */}
+          <div className="mt-16 hidden h-[700px] grid-cols-3 gap-6 overflow-hidden md:grid relative [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
+            {/* Column 1 - Up */}
+            <motion.div
+              animate={{ y: ['0%', '-50%'] }}
+              transition={{ ease: 'linear', duration: 40, repeat: Infinity }}
+              className="flex w-full flex-col gap-6"
+            >
+              {[...testimonials, ...testimonials, ...testimonials, ...testimonials].map((t, idx) => (
+                <TestimonialCard key={`col1-${idx}`} t={t} />
+              ))}
+            </motion.div>
+
+            {/* Column 2 - Down */}
+            <motion.div
+              animate={{ y: ['-50%', '0%'] }}
+              transition={{ ease: 'linear', duration: 45, repeat: Infinity }}
+              className="flex w-full flex-col gap-6"
+            >
+              {[...testimonials, ...testimonials, ...testimonials, ...testimonials].map((t, idx) => (
+                <TestimonialCard key={`col2-${idx}`} t={t} />
+              ))}
+            </motion.div>
+
+            {/* Column 3 - Up */}
+            <motion.div
+              animate={{ y: ['0%', '-50%'] }}
+              transition={{ ease: 'linear', duration: 35, repeat: Infinity }}
+              className="flex w-full flex-col gap-6"
+            >
+              {[...testimonials, ...testimonials, ...testimonials, ...testimonials].map((t, idx) => (
+                <TestimonialCard key={`col3-${idx}`} t={t} />
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Mobile Carousel (hidden on desktop) */}
+          <div className="mt-12 md:hidden">
+            <TestimonialCarousel items={testimonials} />
+          </div>
         </div>
       </section>
 
