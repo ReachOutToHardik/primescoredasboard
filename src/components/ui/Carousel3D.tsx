@@ -8,9 +8,7 @@ const FEATURES = [
   { id: 4, image: '/carousel/c_img4.png' },
   { id: 5, image: '/carousel/c_img5.png' },
   { id: 6, image: '/carousel/c_img6.png' },
-  { id: 7, image: '/carousel/c_img7.png' },
-  { id: 8, image: '/carousel/c_img8.png' },
-  { id: 9, image: '/carousel/c_img9.png' },
+  { id: 7, image: '/carousel/c_img7.png' }
 ];
 
 function FeatureCard({ image }: { image: string }) {
