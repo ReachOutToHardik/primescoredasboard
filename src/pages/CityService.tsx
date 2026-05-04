@@ -1,6 +1,6 @@
 
 import { useParams, Link } from 'react-router-dom';
-import { MapPin, CheckCircle2, ArrowRight, Phone, Mail } from 'lucide-react';
+import { MapPin, CheckCircle2, Phone, Mail } from 'lucide-react';
 
 export default function CityService() {
   const { city } = useParams();
