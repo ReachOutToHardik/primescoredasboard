@@ -13,7 +13,7 @@ const FEATURES = [
   { id: 9, title: 'Expert Review', color: '#dcfce7', isDark: false, image: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=400' }
 ];
 
-function FeatureCard({ data }: { data: typeof FEATURES[0] }) {
+function FeatureCard() {
   return (
     <div
       className="group relative flex-shrink-0 w-96 h-[540px] rounded-[1rem] overflow-hidden shadow-2xl border border-white/10 cursor-pointer origin-center transition-all duration-500 hover:scale-[1.02] hover:brightness-110"
@@ -81,7 +81,7 @@ export default function Carousel3D() {
                   transformStyle: "preserve-3d"
                 }}
               >
-                <FeatureCard data={lang} />
+                <FeatureCard />
               </div>
             );
           })}
