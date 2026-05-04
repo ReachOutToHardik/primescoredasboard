@@ -16,27 +16,17 @@ const FEATURES = [
 function FeatureCard({ data }: { data: typeof FEATURES[0] }) {
   return (
     <div
-      className="group relative flex-shrink-0 w-96 h-[520px] p-8 flex flex-col justify-start rounded-[2rem] overflow-hidden shadow-2xl border border-white/40 cursor-pointer origin-center transition-all duration-500 hover:brightness-110"
-      style={{ backgroundColor: data.color }}
+      className="group relative flex-shrink-0 w-96 h-[540px] rounded-[1rem] overflow-hidden shadow-2xl border border-white/10 cursor-pointer origin-center transition-all duration-500 hover:scale-[1.02] hover:brightness-110"
     >
-      <div className="z-10 mt-2">
-        <p className={`text-[10px] font-bold tracking-[0.2em] uppercase mb-2 opacity-80 ${data.isDark ? 'text-white/70' : 'text-brandNavy/60'}`}>Primescore Suite</p>
-        <h2 className={`font-display text-3xl font-black tracking-tight leading-tight transition-colors ${data.isDark ? 'text-white' : 'text-brandNavy'}`}>
-          {data.title}
-        </h2>
-      </div>
-
-      <div className="absolute bottom-0 left-0 right-0 h-[60%] z-0 p-2 pointer-events-none">
-        <img
-          src={data.image}
-          alt={data.title}
-          className="w-full h-full object-cover rounded-xl object-bottom transition-transform duration-700 group-hover:scale-110"
-        />
-      </div>
-
-      {/* Premium Sheen & Spotlight */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.2),transparent_60%)] pointer-events-none"></div>
-      <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10 pointer-events-none opacity-50"></div>
+      <img
+        src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000"
+        alt="Poster Placeholder"
+        className="w-full h-full object-cover"
+      />
+      
+      {/* Subtle overlay for depth */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 pointer-events-none"></div>
+      <div className="absolute inset-0 border border-white/20 rounded-[1rem] pointer-events-none"></div>
     </div>
   );
 }
@@ -45,7 +35,8 @@ export default function Carousel3D() {
   const rotationValue = useMotionValue(0);
   const rotation = useSpring(rotationValue, { stiffness: 30, damping: 20 });
 
-  const totalCards = FEATURES.length;
+  const displayFeatures = [...FEATURES, ...FEATURES].slice(0, -4);
+  const totalCards = displayFeatures.length;
   // Larger radius makes the circle bigger
   const radius = 950;
 
@@ -77,11 +68,11 @@ export default function Carousel3D() {
           className="relative w-full h-full flex items-center justify-center"
           style={{ rotateY: rotation, transformStyle: "preserve-3d" }}
         >
-          {FEATURES.map((lang, i) => {
+          {displayFeatures.map((lang, i) => {
             const angle = (i * step);
             return (
               <div
-                key={lang.id}
+                key={`${lang.id}-${i}`}
                 className="absolute"
                 style={{
                   // Position cards on a large ring that surrounds the camera
