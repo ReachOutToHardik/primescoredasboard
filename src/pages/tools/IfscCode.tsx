@@ -1,26 +1,94 @@
-import { useState } from 'react'
-import { Search, Building2, MapPin, CheckCircle2, XCircle } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Search, Building2, MapPin, CheckCircle2, XCircle, ChevronDown } from 'lucide-react'
 
 export default function IfscCode() {
+  const [searchMode, setSearchMode] = useState<'ifsc' | 'branch'>('ifsc')
   const [ifsc, setIfsc] = useState('')
   const [data, setData] = useState<any>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
-  const handleSearch = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!ifsc.trim()) return
+  // Branch Search States
+  const [banks, setBanks] = useState<string[]>([])
+  const [states, setStates] = useState<string[]>([])
+  const [cities, setCities] = useState<string[]>([])
+  const [branches, setBranches] = useState<any[]>([])
+
+  const [selectedBank, setSelectedBank] = useState('')
+  const [selectedState, setSelectedState] = useState('')
+  const [selectedCity, setSelectedCity] = useState('')
+  const [selectedBranch, setSelectedBranch] = useState('')
+
+  // Initial Fetch: Banks
+  useEffect(() => {
+    if (searchMode === 'branch' && banks.length === 0) {
+      fetch('https://bank-apis.justonepixel.com/api/v1/get-banks')
+        .then(res => res.json())
+        .then(json => setBanks(json.banks || []))
+        .catch(() => setError('Failed to load banks. Please try again later.'))
+    }
+  }, [searchMode])
+
+  // Fetch States when Bank changes
+  useEffect(() => {
+    if (selectedBank) {
+      setStates([])
+      setCities([])
+      setBranches([])
+      setSelectedState('')
+      setSelectedCity('')
+      setSelectedBranch('')
+      fetch(`https://bank-apis.justonepixel.com/api/v1/get-states?bank=${selectedBank}`)
+        .then(res => res.json())
+        .then(json => setStates(json.states || []))
+    }
+  }, [selectedBank])
+
+  // Fetch Cities when State changes
+  useEffect(() => {
+    if (selectedBank && selectedState) {
+      setCities([])
+      setBranches([])
+      setSelectedCity('')
+      setSelectedBranch('')
+      fetch(`https://bank-apis.justonepixel.com/api/v1/get-cities?bank=${selectedBank}&state=${selectedState}`)
+        .then(res => res.json())
+        .then(json => setCities(json.cities || []))
+    }
+  }, [selectedState])
+
+  // Fetch Branches when City changes
+  useEffect(() => {
+    if (selectedBank && selectedState && selectedCity) {
+      setBranches([])
+      setSelectedBranch('')
+      fetch(`https://bank-apis.justonepixel.com/api/v1/get-branches?bank=${selectedBank}&state=${selectedState}&city=${selectedCity}`)
+        .then(res => res.json())
+        .then(json => setBranches(json.branches || []))
+    }
+  }, [selectedCity])
+
+  const handleBranchSelect = (branchIfsc: string) => {
+    setIfsc(branchIfsc)
+    handleSearch(null, branchIfsc)
+  }
+
+  const handleSearch = async (e: React.FormEvent | null, directIfsc?: string) => {
+    if (e) e.preventDefault()
+    const targetIfsc = directIfsc || ifsc
+    if (!targetIfsc.trim()) return
+
     setLoading(true)
     setError('')
     setData(null)
 
     try {
-      const res = await fetch(`https://ifsc.razorpay.com/${ifsc.toUpperCase()}`)
+      const res = await fetch(`https://ifsc.razorpay.com/${targetIfsc.toUpperCase()}`)
       if (!res.ok) throw new Error('Invalid IFSC Code or Bank details not found')
       const json = await res.json()
       setData(json)
     } catch (err: any) {
-      setError('Bank branch not found. Please verify the 11-digit IFSC code.')
+      setError('Bank branch not found. Please verify the IFSC code.')
     } finally {
       setLoading(false)
     }
@@ -35,38 +103,119 @@ export default function IfscCode() {
             IFSC Code Finder
           </h1>
           <p className="mt-4 text-lg text-gray-600">
-            Verify any bank's IFSC code instantly for secure money transfers.
+            Verify any bank's IFSC code or find your branch easily.
           </p>
         </div>
 
-        {/* Search Box */}
+        {/* Search Mode Tabs */}
+        <div className="flex bg-gray-200/50 p-1 rounded-xl max-w-sm mx-auto mb-8">
+          <button 
+            onClick={() => setSearchMode('ifsc')}
+            className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all ${searchMode === 'ifsc' ? 'bg-white text-brandNavy shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+          >
+            By IFSC Code
+          </button>
+          <button 
+            onClick={() => setSearchMode('branch')}
+            className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all ${searchMode === 'branch' ? 'bg-white text-brandNavy shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+          >
+            By Branch
+          </button>
+        </div>
+
+        {/* Search Box / Selectors */}
         <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 sm:p-10 mb-8">
-          <form onSubmit={handleSearch} className="max-w-2xl mx-auto">
-            <div className="relative flex items-center">
-              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                <Search className="h-5 w-5 text-gray-400" />
+          {searchMode === 'ifsc' ? (
+            <form onSubmit={(e) => handleSearch(e)} className="max-w-2xl mx-auto">
+              <div className="relative flex items-center">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <Search className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Enter 11-digit IFSC Code (e.g., HDFC0000123)"
+                  value={ifsc}
+                  onChange={(e) => setIfsc(e.target.value.toUpperCase())}
+                  maxLength={11}
+                  className="w-full pl-12 pr-32 py-4 rounded-xl border border-gray-200 focus:border-brandNavy focus:ring-1 focus:ring-brandNavy outline-none transition-all uppercase text-lg font-medium"
+                  required
+                />
+                <button 
+                  type="submit" 
+                  disabled={loading}
+                  className="absolute right-2 top-2 bottom-2 px-6 bg-brandNavy text-white rounded-lg font-medium hover:bg-brandNavy/90 transition-colors disabled:opacity-70"
+                >
+                  {loading ? 'Searching...' : 'Search'}
+                </button>
               </div>
-              <input
-                type="text"
-                placeholder="Enter 11-digit IFSC Code (e.g., HDFC0000123)"
-                value={ifsc}
-                onChange={(e) => setIfsc(e.target.value.toUpperCase())}
-                maxLength={11}
-                className="w-full pl-12 pr-32 py-4 rounded-xl border border-gray-200 focus:border-brandNavy focus:ring-1 focus:ring-brandNavy outline-none transition-all uppercase text-lg font-medium"
-                required
-              />
-              <button 
-                type="submit" 
-                disabled={loading}
-                className="absolute right-2 top-2 bottom-2 px-6 bg-brandNavy text-white rounded-lg font-medium hover:bg-brandNavy/90 transition-colors disabled:opacity-70"
-              >
-                {loading ? 'Searching...' : 'Search'}
-              </button>
+              {error && (
+                <p className="mt-4 text-red-500 font-medium text-center">{error}</p>
+              )}
+            </form>
+          ) : (
+            <div className="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+              {/* Bank Selection */}
+              <div className="relative">
+                <select 
+                  value={selectedBank} 
+                  onChange={(e) => setSelectedBank(e.target.value)}
+                  className="w-full appearance-none bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-brandNavy transition-all pr-10 font-medium"
+                >
+                  <option value="">Select Bank</option>
+                  {banks.map(b => <option key={b} value={b}>{b}</option>)}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
+              </div>
+
+              {/* State Selection */}
+              <div className="relative">
+                <select 
+                  disabled={!selectedBank}
+                  value={selectedState} 
+                  onChange={(e) => setSelectedState(e.target.value)}
+                  className="w-full appearance-none bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-brandNavy transition-all pr-10 font-medium disabled:opacity-50"
+                >
+                  <option value="">Select State</option>
+                  {states.map(s => <option key={s} value={s}>{s}</option>)}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
+              </div>
+
+              {/* City Selection */}
+              <div className="relative">
+                <select 
+                  disabled={!selectedState}
+                  value={selectedCity} 
+                  onChange={(e) => setSelectedCity(e.target.value)}
+                  className="w-full appearance-none bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-brandNavy transition-all pr-10 font-medium disabled:opacity-50"
+                >
+                  <option value="">Select City</option>
+                  {cities.map(c => <option key={c} value={c}>{c}</option>)}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
+              </div>
+
+              {/* Branch Selection */}
+              <div className="relative">
+                <select 
+                  disabled={!selectedCity}
+                  value={selectedBranch} 
+                  onChange={(e) => {
+                    setSelectedBranch(e.target.value)
+                    handleBranchSelect(e.target.value)
+                  }}
+                  className="w-full appearance-none bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-brandNavy transition-all pr-10 font-medium disabled:opacity-50"
+                >
+                  <option value="">Select Branch</option>
+                  {branches.map(b => <option key={b.ifsc} value={b.ifsc}>{b.branch}</option>)}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
+              </div>
+              {error && (
+                <p className="mt-4 text-red-500 font-medium text-center sm:col-span-2">{error}</p>
+              )}
             </div>
-            {error && (
-              <p className="mt-4 text-red-500 font-medium text-center">{error}</p>
-            )}
-          </form>
+          )}
         </div>
 
         {/* Results Card */}

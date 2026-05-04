@@ -18,6 +18,7 @@ import FAQAccordion from '../components/ui/FAQAccordion'
 import Reveal from '../components/ui/Reveal'
 import HeroInteractive from '../components/ui/HeroInteractive'
 import DashboardPreview3D from '../components/ui/DashboardPreview3D'
+import Carousel3D from '../components/ui/Carousel3D'
 import { useMemo, useState, useEffect, useRef } from 'react'
 
 
@@ -433,6 +434,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ═══ 3D FEATURE CAROUSEL ═══ */}
+      <Carousel3D />
     </div>
   )
 }
