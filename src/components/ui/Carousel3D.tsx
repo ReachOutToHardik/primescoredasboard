@@ -16,7 +16,7 @@ const FEATURES = [
 function FeatureCard({ data }: { data: typeof FEATURES[0] }) {
   return (
     <div
-      className="group relative flex-shrink-0 w-72 h-[420px] p-6 flex flex-col justify-start rounded-[28px] overflow-hidden shadow-2xl border border-white/40 cursor-pointer origin-center transition-all duration-500 hover:brightness-110"
+      className="group relative flex-shrink-0 w-96 h-[520px] p-8 flex flex-col justify-start rounded-[2rem] overflow-hidden shadow-2xl border border-white/40 cursor-pointer origin-center transition-all duration-500 hover:brightness-110"
       style={{ backgroundColor: data.color }}
     >
       <div className="z-10 mt-2">
@@ -46,8 +46,8 @@ export default function Carousel3D() {
   const rotation = useSpring(rotationValue, { stiffness: 30, damping: 20 });
 
   const totalCards = FEATURES.length;
-  // Smaller radius brings cards closer together
-  const radius = 600;
+  // Larger radius makes the circle bigger
+  const radius = 950;
 
   const step = 360 / totalCards;
 
@@ -70,8 +70,8 @@ export default function Carousel3D() {
       </div>
 
       <div
-        className="relative w-full h-[500px] overflow-hidden flex items-center justify-center mt-10"
-        style={{ perspective: "800px" }}
+        className="relative w-full h-[650px] overflow-hidden flex items-center justify-center mt-10"
+        style={{ perspective: "1000px" }}
       >
         <motion.div
           className="relative w-full h-full flex items-center justify-center"
