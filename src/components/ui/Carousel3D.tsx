@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { motion, useAnimationFrame, useMotionValue, useSpring } from 'framer-motion';
 
 const FEATURES = [
@@ -13,7 +13,7 @@ const FEATURES = [
   { id: 9, title: 'Expert Review', color: '#dcfce7', isDark: false, image: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=400' }
 ];
 
-function FeatureCard({ data, index }: { data: typeof FEATURES[0], index: number }) {
+function FeatureCard({ data }: { data: typeof FEATURES[0] }) {
   return (
     <div
       className="group relative flex-shrink-0 w-72 h-[420px] p-6 flex flex-col justify-start rounded-[28px] overflow-hidden shadow-2xl border border-white/40 cursor-pointer origin-center transition-all duration-500 hover:brightness-110"
@@ -89,7 +89,7 @@ export default function Carousel3D() {
                   transformStyle: "preserve-3d"
                 }}
               >
-                <FeatureCard data={lang} index={i} />
+                <FeatureCard data={lang} />
               </div>
             );
           })}
