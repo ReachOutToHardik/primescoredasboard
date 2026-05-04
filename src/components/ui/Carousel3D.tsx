@@ -2,28 +2,28 @@
 import { motion, useAnimationFrame, useMotionValue, useSpring } from 'framer-motion';
 
 const FEATURES = [
-  { id: 1, title: 'Smart Dispute', color: '#f7f8fc', isDark: false, image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=400' },
-  { id: 2, title: 'Live Tracking', color: '#E41E26', isDark: true, image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400' },
-  { id: 3, title: 'Coaching', color: '#16a34a', isDark: true, image: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=400' },
-  { id: 4, title: 'Secure Vault', color: '#222A59', isDark: true, image: 'https://images.unsplash.com/photo-1614064641936-3899897fa46b?auto=format&fit=crop&q=80&w=400' },
-  { id: 5, title: 'Legal Prep', color: '#f3f4f6', isDark: false, image: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=400' },
-  { id: 6, title: 'Instant Alerts', color: '#ffedd5', isDark: false, image: 'https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&q=80&w=400' },
-  { id: 7, title: 'Simulator', color: '#fce7f3', isDark: false, image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=400' },
-  { id: 8, title: '24/7 Support', color: '#e0e7ff', isDark: false, image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400' },
-  { id: 9, title: 'Expert Review', color: '#dcfce7', isDark: false, image: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=400' }
+  { id: 1, image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000' },
+  { id: 2, image: 'https://images.unsplash.com/photo-1618005192329-0a823f4ec06e?q=80&w=1000' },
+  { id: 3, image: 'https://images.unsplash.com/photo-1633167606207-d840b5070fc2?q=80&w=1000' },
+  { id: 4, image: 'https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=1000' },
+  { id: 5, image: 'https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=1000' },
+  { id: 6, image: 'https://images.unsplash.com/photo-1614850523598-811484ff407f?q=80&w=1000' },
+  { id: 7, image: 'https://images.unsplash.com/photo-1614850523011-8f49ffc73908?q=80&w=1000' },
+  { id: 8, image: 'https://images.unsplash.com/photo-1614851012101-7151f13a20bf?q=80&w=1000' },
+  { id: 9, image: 'https://images.unsplash.com/photo-1614851012117-985827361a6c?q=80&w=1000' }
 ];
 
-function FeatureCard() {
+function FeatureCard({ image }: { image: string }) {
   return (
     <div
       className="group relative flex-shrink-0 w-96 h-[540px] rounded-[1rem] overflow-hidden shadow-2xl border border-white/10 cursor-pointer origin-center transition-all duration-500 hover:scale-[1.02] hover:brightness-110"
     >
       <img
-        src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000"
+        src={image}
         alt="Poster Placeholder"
         className="w-full h-full object-cover"
       />
-      
+
       {/* Subtle overlay for depth */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 pointer-events-none"></div>
       <div className="absolute inset-0 border border-white/20 rounded-[1rem] pointer-events-none"></div>
@@ -81,7 +81,7 @@ export default function Carousel3D() {
                   transformStyle: "preserve-3d"
                 }}
               >
-                <FeatureCard />
+                <FeatureCard image={lang.image} />
               </div>
             );
           })}
