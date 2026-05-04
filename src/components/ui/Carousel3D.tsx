@@ -2,15 +2,15 @@
 import { motion, useAnimationFrame, useMotionValue, useSpring } from 'framer-motion';
 
 const FEATURES = [
-  { id: 1, image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000' },
-  { id: 2, image: 'https://images.unsplash.com/photo-1618005192329-0a823f4ec06e?q=80&w=1000' },
-  { id: 3, image: 'https://images.unsplash.com/photo-1633167606207-d840b5070fc2?q=80&w=1000' },
-  { id: 4, image: 'https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=1000' },
-  { id: 5, image: 'https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=1000' },
-  { id: 6, image: 'https://images.unsplash.com/photo-1614850523598-811484ff407f?q=80&w=1000' },
-  { id: 7, image: 'https://images.unsplash.com/photo-1614850523011-8f49ffc73908?q=80&w=1000' },
-  { id: 8, image: 'https://images.unsplash.com/photo-1614851012101-7151f13a20bf?q=80&w=1000' },
-  { id: 9, image: 'https://images.unsplash.com/photo-1614851012117-985827361a6c?q=80&w=1000' }
+  { id: 1, image: '/carousel/c_img1.png' },
+  { id: 2, image: '/carousel/c_img2.png' },
+  { id: 3, image: '/carousel/c_img3.png' },
+  { id: 4, image: '/carousel/c_img4.png' },
+  { id: 5, image: '/carousel/c_img5.png' },
+  { id: 6, image: '/carousel/c_img6.png' },
+  { id: 7, image: '/carousel/c_img7.png' },
+  { id: 8, image: '/carousel/c_img8.png' },
+  { id: 9, image: '/carousel/c_img9.png' },
 ];
 
 function FeatureCard({ image }: { image: string }) {
@@ -35,7 +35,7 @@ export default function Carousel3D() {
   const rotationValue = useMotionValue(0);
   const rotation = useSpring(rotationValue, { stiffness: 30, damping: 20 });
 
-  const displayFeatures = [...FEATURES, ...FEATURES].slice(0, -4);
+  const displayFeatures = [...FEATURES, ...FEATURES];
   const totalCards = displayFeatures.length;
   // Larger radius makes the circle bigger
   const radius = 950;
