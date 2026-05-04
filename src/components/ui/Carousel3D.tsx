@@ -22,8 +22,6 @@ function FeatureCard({ image }: { image: string }) {
         className="w-full h-full object-cover"
       />
 
-      {/* Subtle overlay for depth */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 pointer-events-none"></div>
       <div className="absolute inset-0 border border-white/20 rounded-[1rem] pointer-events-none"></div>
     </div>
   );
