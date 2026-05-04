@@ -111,13 +111,13 @@ export default function IfscCode() {
         <div className="flex bg-gray-200/50 p-1 rounded-xl max-w-sm mx-auto mb-8">
           <button 
             onClick={() => setSearchMode('ifsc')}
-            className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all ${searchMode === 'ifsc' ? 'bg-white text-brandNavy shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+            className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all ${searchMode === 'ifsc' ? 'bg-white text-[#10b981] shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
           >
             By IFSC Code
           </button>
           <button 
             onClick={() => setSearchMode('branch')}
-            className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all ${searchMode === 'branch' ? 'bg-white text-brandNavy shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+            className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all ${searchMode === 'branch' ? 'bg-white text-[#10b981] shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
           >
             By Branch
           </button>
@@ -137,13 +137,13 @@ export default function IfscCode() {
                   value={ifsc}
                   onChange={(e) => setIfsc(e.target.value.toUpperCase())}
                   maxLength={11}
-                  className="w-full pl-12 pr-32 py-4 rounded-xl border border-gray-200 focus:border-brandNavy focus:ring-1 focus:ring-brandNavy outline-none transition-all uppercase text-lg font-medium"
+                  className="w-full pl-12 pr-32 py-4 rounded-xl border border-gray-200 focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981] outline-none transition-all uppercase text-lg font-medium"
                   required
                 />
                 <button 
                   type="submit" 
                   disabled={loading}
-                  className="absolute right-2 top-2 bottom-2 px-6 bg-brandNavy text-white rounded-lg font-medium hover:bg-brandNavy/90 transition-colors disabled:opacity-70"
+                  className="absolute right-2 top-2 bottom-2 px-6 bg-[#10b981] text-white rounded-lg font-medium hover:bg-[#10b981]/90 transition-colors disabled:opacity-70"
                 >
                   {loading ? 'Searching...' : 'Search'}
                 </button>
@@ -159,7 +159,7 @@ export default function IfscCode() {
                 <select 
                   value={selectedBank} 
                   onChange={(e) => setSelectedBank(e.target.value)}
-                  className="w-full appearance-none bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-brandNavy transition-all pr-10 font-medium"
+                  className="w-full appearance-none bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-[#10b981] transition-all pr-10 font-medium"
                 >
                   <option value="">Select Bank</option>
                   {banks.map(b => <option key={b} value={b}>{b}</option>)}
@@ -173,7 +173,7 @@ export default function IfscCode() {
                   disabled={!selectedBank}
                   value={selectedState} 
                   onChange={(e) => setSelectedState(e.target.value)}
-                  className="w-full appearance-none bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-brandNavy transition-all pr-10 font-medium disabled:opacity-50"
+                  className="w-full appearance-none bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-[#10b981] transition-all pr-10 font-medium disabled:opacity-50"
                 >
                   <option value="">Select State</option>
                   {states.map(s => <option key={s} value={s}>{s}</option>)}
@@ -187,7 +187,7 @@ export default function IfscCode() {
                   disabled={!selectedState}
                   value={selectedCity} 
                   onChange={(e) => setSelectedCity(e.target.value)}
-                  className="w-full appearance-none bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-brandNavy transition-all pr-10 font-medium disabled:opacity-50"
+                  className="w-full appearance-none bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-[#10b981] transition-all pr-10 font-medium disabled:opacity-50"
                 >
                   <option value="">Select City</option>
                   {cities.map(c => <option key={c} value={c}>{c}</option>)}
@@ -204,7 +204,7 @@ export default function IfscCode() {
                     setSelectedBranch(e.target.value)
                     handleBranchSelect(e.target.value)
                   }}
-                  className="w-full appearance-none bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-brandNavy transition-all pr-10 font-medium disabled:opacity-50"
+                  className="w-full appearance-none bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-[#10b981] transition-all pr-10 font-medium disabled:opacity-50"
                 >
                   <option value="">Select Branch</option>
                   {branches.map(b => <option key={b.ifsc} value={b.ifsc}>{b.branch}</option>)}
@@ -223,7 +223,7 @@ export default function IfscCode() {
           <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 sm:p-10">
             <div className="flex items-center gap-4 border-b border-gray-100 pb-6 mb-6">
               <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center border border-gray-100">
-                <Building2 className="h-6 w-6 text-brandNavy" />
+                <Building2 className="h-6 w-6 text-[#10b981]" />
               </div>
               <div>
                 <h2 className="text-2xl font-bold text-gray-900">{data.BANK}</h2>
@@ -235,7 +235,7 @@ export default function IfscCode() {
               <div className="space-y-6">
                 <div>
                   <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">IFSC Code</label>
-                  <p className="text-xl font-mono font-bold text-brandNavy mt-1">{data.IFSC}</p>
+                  <p className="text-xl font-mono font-bold text-[#10b981] mt-1">{data.IFSC}</p>
                 </div>
                 <div>
                   <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">MICR Code</label>

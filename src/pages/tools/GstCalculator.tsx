@@ -65,7 +65,7 @@ export default function GstCalculator() {
                     type="number" 
                     value={amount || ''} 
                     onChange={(e) => setAmount(Number(e.target.value))} 
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-brandNavy focus:ring-1 focus:ring-brandNavy outline-none transition-all"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981] outline-none transition-all"
                   />
                 </div>
               </div>
@@ -77,7 +77,7 @@ export default function GstCalculator() {
                     <button 
                       key={r} 
                       onClick={() => setRate(r)} 
-                      className={`py-2 text-sm font-medium rounded-lg border transition-colors ${rate === r ? 'border-brandNavy bg-brandNavy text-white' : 'border-gray-200 text-gray-600 hover:border-gray-300'}`}
+                      className={`py-2 text-sm font-medium rounded-lg border transition-colors ${rate === r ? 'border-[#10b981] bg-[#10b981] text-white' : 'border-gray-200 text-gray-600 hover:border-gray-300'}`}
                     >
                       {r}%
                     </button>
@@ -111,7 +111,7 @@ export default function GstCalculator() {
                 
                 <div className="flex justify-between items-center border-t border-gray-200 pt-4 mt-4">
                   <span className="font-bold text-gray-900">Total Amount</span>
-                  <span className="font-bold text-xl text-brandNavy">₹{totalAmount.toLocaleString('en-IN', { maximumFractionDigits: 2 })}</span>
+                  <span className="font-bold text-xl text-[#10b981]">₹{totalAmount.toLocaleString('en-IN', { maximumFractionDigits: 2 })}</span>
                 </div>
               </div>
             </div>
