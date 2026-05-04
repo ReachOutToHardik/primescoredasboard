@@ -1,7 +1,7 @@
 
 import { Link } from 'react-router-dom';
 import { BLOG_POSTS } from '../data/blogPosts';
-import { ArrowRight, Clock, User } from 'lucide-react';
+import { ArrowRight, Clock } from 'lucide-react';
 
 export default function Blog() {
   return (

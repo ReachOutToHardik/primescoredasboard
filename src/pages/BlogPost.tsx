@@ -1,7 +1,7 @@
 
 import { useParams, Link } from 'react-router-dom';
 import { BLOG_POSTS } from '../data/blogPosts';
-import { ArrowLeft, Calendar, Clock, User, Share2 } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, Share2 } from 'lucide-react';
 
 export default function BlogPost() {
   const { slug } = useParams();

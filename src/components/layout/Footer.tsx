@@ -81,6 +81,28 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Local SEO Cities */}
+        <div className="mt-16 pt-12 border-t border-brandNavy/8">
+          <div className="text-xs font-semibold uppercase tracking-wider text-brandNavy mb-6">Service Locations</div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-y-3 gap-x-4">
+            {[
+              'Jaipur', 'Jodhpur', 'Kota', 'Bikaner', 'Ajmer', 'Udaipur', 'Bhilwara', 'Alwar', 
+              'Bharatpur', 'Sikar', 'Pali', 'Sri Ganganagar', 'Jhunjhunu', 'Chittorgarh', 'Jaisalmer', 'Nagaur',
+              'Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Ahmedabad', 'Chennai', 'Kolkata', 'Surat', 
+              'Pune', 'Lucknow', 'Kanpur', 'Indore', 'Thane', 'Bhopal', 'Visakhapatnam', 'Patna', 
+              'Vadodara', 'Ghaziabad', 'Ludhiana'
+            ].map((city) => (
+              <NavLink 
+                key={city} 
+                to={`/services/credit-rectification/${city.toLowerCase().replace(/\s+/g, '-')}`}
+                className="text-[11px] text-textSecondary hover:text-[#10b981] transition-colors"
+              >
+                Credit Rectification in {city}
+              </NavLink>
+            ))}
+          </div>
+        </div>
+
         <div className="mt-12 flex flex-col gap-3 border-t border-brandNavy/8 pt-6 text-xs text-textSecondary sm:flex-row sm:items-center sm:justify-between">
           <div>© {new Date().getFullYear()} Primescore. All rights reserved.</div>
           <div>Primescore is not a credit bureau or NBFC. We assist with dispute filing and documentation.</div>

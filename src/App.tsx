@@ -14,6 +14,7 @@ import GstCalculator from './pages/tools/GstCalculator'
 import EmiCalculator from './pages/tools/EmiCalculator'
 import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
+import CityService from './pages/CityService'
 
 import LoadingScreen from './components/ui/LoadingScreen'
 
@@ -52,6 +53,7 @@ export default function App() {
             <Route path="/tools/emi" element={<EmiCalculator />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/services/credit-rectification/:city" element={<CityService />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </motion.div>
