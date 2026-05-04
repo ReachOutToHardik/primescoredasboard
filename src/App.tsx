@@ -12,6 +12,8 @@ import Services from './pages/Services'
 import IfscCode from './pages/tools/IfscCode'
 import GstCalculator from './pages/tools/GstCalculator'
 import EmiCalculator from './pages/tools/EmiCalculator'
+import Blog from './pages/Blog'
+import BlogPost from './pages/BlogPost'
 
 import LoadingScreen from './components/ui/LoadingScreen'
 
@@ -48,6 +50,8 @@ export default function App() {
             <Route path="/tools/ifsc" element={<IfscCode />} />
             <Route path="/tools/gst" element={<GstCalculator />} />
             <Route path="/tools/emi" element={<EmiCalculator />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </motion.div>

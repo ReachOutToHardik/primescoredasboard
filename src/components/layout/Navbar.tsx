@@ -37,6 +37,7 @@ export default function Navbar() {
       { to: '/how-it-works', label: 'How It Works' },
       { to: '/pricing', label: 'Pricing' },
       { to: '/about', label: 'About' },
+      { to: '/blog', label: 'Knowledge Hub' },
       { to: '/contact', label: 'Contact' },
     ],
     [],
