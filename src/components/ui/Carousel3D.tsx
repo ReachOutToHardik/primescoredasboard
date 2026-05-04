@@ -34,8 +34,9 @@ function FeatureCard({ data }: { data: typeof FEATURES[0] }) {
         />
       </div>
 
-      {/* Dynamic light reflection */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-black/5 pointer-events-none"></div>
+      {/* Premium Sheen & Spotlight */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.2),transparent_60%)] pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10 pointer-events-none opacity-50"></div>
     </div>
   );
 }
@@ -58,7 +59,7 @@ export default function Carousel3D() {
   });
 
   return (
-    <div className="w-full bg-gray-50 overflow-hidden relative pt-20">
+    <div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen bg-gray-50 overflow-hidden pt-20">
       <div className="text-center relative z-30 px-4">
         <h2 className="font-display text-4xl font-black tracking-tight text-brandNavy sm:text-5xl">
           Everything you need,<br />in one place
@@ -95,12 +96,6 @@ export default function Carousel3D() {
           })}
         </motion.div>
 
-        {/* Decorative center point / environment depth */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(255,255,255,0.05)_50%,rgba(255,255,255,0.7)_100%)] pointer-events-none z-10"></div>
-
-        {/* Side fades */}
-        <div className="absolute inset-y-0 left-0 w-64 bg-gradient-to-r from-gray-50 via-gray-50/40 to-transparent pointer-events-none z-10"></div>
-        <div className="absolute inset-y-0 right-0 w-64 bg-gradient-to-l from-gray-50 via-gray-50/40 to-transparent pointer-events-none z-10"></div>
       </div>
     </div>
   );
